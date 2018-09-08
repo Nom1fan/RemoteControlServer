@@ -17,11 +17,10 @@ public class ProcessRunnerImpl implements ProcessRunner {
             return new RunProcessResult(false, null, String.format("File [%s] doesn't exist", executableAbsolutePath));
         }
 
-        String fileName = file.getName();
         String dir = file.getParent();
 
         try {
-            Process process = Runtime.getRuntime().exec(fileName, null, new File(dir));
+            Process process = Runtime.getRuntime().exec(executableAbsolutePath, null, new File(dir));
             return new RunProcessResult(true, process);
         } catch (IOException e) {
             e.printStackTrace();

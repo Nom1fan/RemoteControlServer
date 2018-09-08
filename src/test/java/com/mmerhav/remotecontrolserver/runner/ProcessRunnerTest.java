@@ -16,7 +16,7 @@ public class ProcessRunnerTest {
 
     @Test
     public void runNotepadExecutable_Success() {
-        RunProcessResult result = processRunner.runProcess("C:/WINDOWS/system32/notepad.exe");
+        RunProcessResult result = processRunner.runProcess("C:/Progra~2/TeamViewer/TeamViewer.exe");
         Assert.assertTrue(result.isSuccess());
     }
 
