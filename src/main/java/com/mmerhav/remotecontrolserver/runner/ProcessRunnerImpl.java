@@ -20,6 +20,7 @@ public class ProcessRunnerImpl implements ProcessRunner {
         String dir = file.getParent();
 
         try {
+            //TODO Must detect if process is already running and not run it again
             Process process = Runtime.getRuntime().exec(executableAbsolutePath, null, new File(dir));
             return new RunProcessResult(true, process);
         } catch (IOException e) {
