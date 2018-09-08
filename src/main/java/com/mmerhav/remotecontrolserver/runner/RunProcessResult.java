@@ -11,5 +11,7 @@ public class RunProcessResult {
 
     private final boolean isSuccess;
 
+    private final Process process;
+
     private String errMsg;
 }

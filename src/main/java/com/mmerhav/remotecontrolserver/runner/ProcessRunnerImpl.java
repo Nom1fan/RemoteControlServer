@@ -14,19 +14,18 @@ public class ProcessRunnerImpl implements ProcessRunner {
         File file = new File(executableAbsolutePath);
 
         if (!file.exists()) {
-            return new RunProcessResult(false, String.format("File [%s] doesn't exist", executableAbsolutePath));
+            return new RunProcessResult(false, null, String.format("File [%s] doesn't exist", executableAbsolutePath));
         }
 
         String fileName = file.getName();
         String dir = file.getParent();
 
         try {
-            Runtime.getRuntime().exec(fileName, null, new File(dir));
+            Process process = Runtime.getRuntime().exec(fileName, null, new File(dir));
+            return new RunProcessResult(true, process);
         } catch (IOException e) {
             e.printStackTrace();
-            return new RunProcessResult(false, e.getMessage());
+            return new RunProcessResult(false, null, e.getMessage());
         }
-
-        return new RunProcessResult(true);
     }
 }
