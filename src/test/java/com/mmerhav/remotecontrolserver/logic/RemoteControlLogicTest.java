@@ -1,7 +1,7 @@
 package com.mmerhav.remotecontrolserver.logic;
 
 import com.mmerhav.remotecontrolserver.manager.ExecutablesManager;
-import com.mmerhav.remotecontrolserver.runner.ProcessRunner;
+import com.mmerhav.remotecontrolserver.runner.ProcessManager;
 import com.mmerhav.remotecontrolserver.runner.RunProcessResult;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,7 +26,7 @@ public class RemoteControlLogicTest {
     private ExecutablesManager executablesManager;
 
     @Mock
-    private ProcessRunner processRunner;
+    private ProcessManager processManager;
 
     @Mock
     private HttpServletResponse response;
@@ -45,12 +45,12 @@ public class RemoteControlLogicTest {
     }
 
     @Test
-    public void startProcess_processRunnerReturnsFailedResult_LogicSendsInternalServerError() throws IOException {
+    public void startProcess_processManagerReturnsFailedResult_LogicSendsInternalServerError() throws IOException {
         String processName = "TeamViewer";
         String pathToExec = "/path/to/executable/executable.exe";
         when(executablesManager.isValidExecutable(eq(processName))).thenReturn(true);
         when(executablesManager.getExecutableAbsolutePath(eq(processName))).thenReturn(pathToExec);
-        when(processRunner.runProcess(eq(pathToExec))).thenReturn(new RunProcessResult(false, null, "Test message"));
+        when(processManager.runProcess(eq(pathToExec))).thenReturn(new RunProcessResult(false, null, "Test message"));
 
         remoteControlLogic.startProcess(processName, response);
 

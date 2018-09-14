@@ -3,7 +3,7 @@ package logic;
 import com.mmerhav.remotecontrolserver.logic.RemoteControlLogicImpl;
 import com.mmerhav.remotecontrolserver.manager.ExecutablesManager;
 import com.mmerhav.remotecontrolserver.manager.ExecutablesManagerImpl;
-import com.mmerhav.remotecontrolserver.runner.ProcessRunnerImpl;
+import com.mmerhav.remotecontrolserver.runner.ProcessManagerImpl;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -25,10 +25,10 @@ public class RemoteControlLogicITest {
     @BeforeClass
     public static void beforeClass() throws IOException {
         remoteControlLogic = new RemoteControlLogicImpl();
-        ExecutablesManager mapper = new ExecutablesManagerImpl();
-        ((ExecutablesManagerImpl) mapper).init();
+        ExecutablesManagerImpl mapper = new ExecutablesManagerImpl();
+        mapper.init();
         remoteControlLogic.setExecutablesManager(mapper);
-        remoteControlLogic.setProcessRunner(new ProcessRunnerImpl());
+        remoteControlLogic.setProcessManager(new ProcessManagerImpl());
     }
 
     @Before

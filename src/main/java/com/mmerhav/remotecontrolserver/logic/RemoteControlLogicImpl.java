@@ -1,16 +1,15 @@
 package com.mmerhav.remotecontrolserver.logic;
 
 import com.mmerhav.remotecontrolserver.manager.ExecutablesManager;
-import com.mmerhav.remotecontrolserver.runner.ProcessRunner;
+import com.mmerhav.remotecontrolserver.runner.ProcessManager;
 import com.mmerhav.remotecontrolserver.runner.RunProcessResult;
+import com.mmerhav.remotecontrolserver.runner.StopProcessResult;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 import static javax.servlet.http.HttpServletResponse.SC_BAD_REQUEST;
 import static javax.servlet.http.HttpServletResponse.SC_INTERNAL_SERVER_ERROR;
@@ -19,10 +18,8 @@ import static javax.servlet.http.HttpServletResponse.SC_INTERNAL_SERVER_ERROR;
 @Setter
 public class RemoteControlLogicImpl implements RemoteControlLogic {
 
-    private Map<String, Process> runningProcessesMap = new HashMap<>();
-
     @Autowired
-    private ProcessRunner processRunner;
+    private ProcessManager processManager;
 
     @Autowired
     private ExecutablesManager executablesManager;
@@ -34,13 +31,10 @@ public class RemoteControlLogicImpl implements RemoteControlLogic {
         }
 
         String executableAbsolutePath = executablesManager.getExecutableAbsolutePath(execName);
-        RunProcessResult result = processRunner.runProcess(executableAbsolutePath);
+        RunProcessResult result = processManager.runProcess(executableAbsolutePath);
         if (!result.isSuccess()) {
             response.sendError(SC_INTERNAL_SERVER_ERROR, result.getErrMsg());
-            return;
         }
-
-        runningProcessesMap.put(execName, result.getProcess());
     }
 
     @Override
@@ -49,13 +43,11 @@ public class RemoteControlLogicImpl implements RemoteControlLogic {
             return;
         }
 
-        if (runningProcessesMap.containsKey(execName)) {
-            runningProcessesMap.get(execName).destroy();
-            runningProcessesMap.remove(execName);
-        } else {
-            //TODO Add better way to kill process here (`taskkill /f /im teamviewer* /T` with admin rights perhaps
-        }
+        StopProcessResult result = processManager.stopProcess(execName);
 
+        if (!result.isSuccess()) {
+            response.sendError(SC_INTERNAL_SERVER_ERROR, result.getErrMsg());
+        }
     }
 
     private boolean isInvalidExecName(String execName, HttpServletResponse response) throws IOException {

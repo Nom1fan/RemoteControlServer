@@ -7,7 +7,7 @@ import lombok.RequiredArgsConstructor;
 @Data
 @AllArgsConstructor
 @RequiredArgsConstructor
-public class RunProcessResult {
+public class StopProcessResult {
 
     private final boolean isSuccess;
 
