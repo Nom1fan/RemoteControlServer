@@ -9,20 +9,20 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class ProcessRunnerTest {
+public class ProcessManagerTest {
 
     @Autowired
-    private ProcessRunner processRunner;
+    private ProcessManager processManager;
 
     @Test
     public void runNotepadExecutable_Success() {
-        RunProcessResult result = processRunner.runProcess("C:/Progra~2/TeamViewer/TeamViewer.exe");
+        RunProcessResult result = processManager.runProcess("C:/Progra~2/TeamViewer/TeamViewer.exe");
         Assert.assertTrue(result.isSuccess());
     }
 
     @Test
     public void runNonexistentExecutable_Failure() {
-        RunProcessResult result = processRunner.runProcess("C:/Nonexistent/path/nonexistent.exe");
+        RunProcessResult result = processManager.runProcess("C:/Nonexistent/path/nonexistent.exe");
         Assert.assertFalse(result.isSuccess());
         Assert.assertNotNull(result.getErrMsg());
         System.out.println(result.getErrMsg());

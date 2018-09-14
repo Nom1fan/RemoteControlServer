@@ -1,6 +1,10 @@
 package com.mmerhav.remotecontrolserver.runner;
 
-public interface ProcessRunner {
+public interface ProcessManager {
 
     RunProcessResult runProcess(String executableAbsolutePath);
+
+    StopProcessResult stopProcess(String executableName);
+
+
 }
