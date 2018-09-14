@@ -43,13 +43,11 @@ public class RemoteControlLogicImpl implements RemoteControlLogic {
             return;
         }
 
-        if (runningProcessesMap.containsKey(execName)) {
-            runningProcessesMap.get(execName).destroy();
-            runningProcessesMap.remove(execName);
-        } else {
-            //TODO Add better way to kill process here (`taskkill /f /im teamviewer* /T` with admin rights perhaps
-        }
+        StopProcessResult result = processManager.stopProcess(execName);
 
+        if (!result.isSuccess()) {
+            response.sendError(SC_INTERNAL_SERVER_ERROR, result.getErrMsg());
+        }
     }
 
     private boolean isInvalidExecName(String execName, HttpServletResponse response) throws IOException {
