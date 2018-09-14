@@ -1,5 +1,7 @@
-package com.mmerhav.remotecontrolserver.runner;
+package runner;
 
+import com.mmerhav.remotecontrolserver.runner.ProcessManager;
+import com.mmerhav.remotecontrolserver.runner.RunProcessResult;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,14 +11,14 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class ProcessManagerTest {
+public class ProcessManagerITest {
 
     @Autowired
     private ProcessManager processManager;
 
     @Test
     public void runNotepadExecutable_Success() {
-        RunProcessResult result = processManager.runProcess("C:/Progra~2/TeamViewer/TeamViewer.exe");
+        RunProcessResult result = processManager.runProcess("C:/WINDOWS/system32/notepad.exe");
         Assert.assertTrue(result.isSuccess());
     }
 

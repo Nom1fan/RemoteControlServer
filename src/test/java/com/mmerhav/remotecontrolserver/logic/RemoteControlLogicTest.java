@@ -50,17 +50,10 @@ public class RemoteControlLogicTest {
         String pathToExec = "/path/to/executable/executable.exe";
         when(executablesManager.isValidExecutable(eq(processName))).thenReturn(true);
         when(executablesManager.getExecutableAbsolutePath(eq(processName))).thenReturn(pathToExec);
-        when(processManager.runProcess(eq(pathToExec))).thenReturn(new RunProcessResult(false, null, "Test message"));
+        when(processManager.runProcess(eq(pathToExec))).thenReturn(new RunProcessResult(false, "Test message"));
 
         remoteControlLogic.startProcess(processName, response);
 
         verify(response, times(1)).sendError(SC_INTERNAL_SERVER_ERROR, "Test message");
-    }
-
-    @Test
-    public void stopProcess_ProcessWasNeverRun_LogicSendsBadRequestHttpError() throws IOException {
-        String processName = "TeamViewer";
-        remoteControlLogic.stopProcess(processName, response);
-        verify(response, times(1)).sendError(SC_BAD_REQUEST, String.format("Remote executable not found: [TeamViewer]. Make sure the remote executable name is defined on the server.", processName));
     }
 }

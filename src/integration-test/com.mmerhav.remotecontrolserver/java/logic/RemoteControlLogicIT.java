@@ -1,7 +1,6 @@
 package logic;
 
 import com.mmerhav.remotecontrolserver.logic.RemoteControlLogicImpl;
-import com.mmerhav.remotecontrolserver.manager.ExecutablesManager;
 import com.mmerhav.remotecontrolserver.manager.ExecutablesManagerImpl;
 import com.mmerhav.remotecontrolserver.runner.ProcessManagerImpl;
 import org.junit.Before;
@@ -15,7 +14,7 @@ import java.io.IOException;
 
 import static org.mockito.Mockito.*;
 
-public class RemoteControlLogicITest {
+public class RemoteControlLogicIT {
 
     private static RemoteControlLogicImpl remoteControlLogic;
 
