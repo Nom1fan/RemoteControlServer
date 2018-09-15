@@ -33,11 +33,26 @@ public class ProcessManagerImpl implements ProcessManager {
     public StopProcessResult stopProcess(String executableName) {
 
         try {
-            Runtime.getRuntime().exec(String.format("taskkill /f /im %s* /T", executableName)); // Needs admin rights
+            Process process = Runtime.getRuntime().exec(String.format("taskkill /f /im %s* /T", executableName)); // Needs admin rights
+            String stdError = getStdError(process);
+
+            if (!stdError.isEmpty()) {
+                return new StopProcessResult(false, stdError);
+            }
             return new StopProcessResult(true);
         } catch (IOException e) {
             e.printStackTrace();
             return new StopProcessResult(false, e.getMessage());
         }
+    }
+
+    private String getStdError(Process process) throws IOException {
+        BufferedReader stdError = new BufferedReader(new InputStreamReader(process.getErrorStream()));
+        StringBuilder stdErrorBuilder = new StringBuilder();
+        String s;
+        while ((s = stdError.readLine()) != null) {
+            stdErrorBuilder.append(s);
+        }
+        return stdErrorBuilder.toString();
     }
 }
