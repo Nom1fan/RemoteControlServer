@@ -21,13 +21,7 @@ public class ProcessManagerImpl implements ProcessManager {
         String dir = file.getParent();
 
         try {
-            Process process = Runtime.getRuntime().exec(executableAbsolutePath, null, new File(dir));
-            String stdError = getStdError(process);
-
-            if (!stdError.isEmpty()) {
-                return new RunProcessResult(false, stdError);
-            }
-
+            Runtime.getRuntime().exec(executableAbsolutePath, null, new File(dir));
             return new RunProcessResult(true);
         } catch (IOException e) {
             e.printStackTrace();
@@ -39,27 +33,11 @@ public class ProcessManagerImpl implements ProcessManager {
     public StopProcessResult stopProcess(String executableName) {
 
         try {
-            Process process = Runtime.getRuntime().exec(String.format("taskkill /f /im %s* /T", executableName)); // Needs admin rights
-            String stdError = getStdError(process);
-
-            if (!stdError.isEmpty()) {
-                return new StopProcessResult(false, stdError);
-            }
-
+            Runtime.getRuntime().exec(String.format("taskkill /f /im %s* /T", executableName)); // Needs admin rights
             return new StopProcessResult(true);
         } catch (IOException e) {
             e.printStackTrace();
             return new StopProcessResult(false, e.getMessage());
         }
-    }
-
-    private String getStdError(Process process) throws IOException {
-        BufferedReader stdError = new BufferedReader(new InputStreamReader(process.getErrorStream()));
-        StringBuilder stdErrorBuilder = new StringBuilder();
-        String s;
-        while ((s = stdError.readLine()) != null) {
-            stdErrorBuilder.append(s);
-        }
-        return stdErrorBuilder.toString();
     }
 }

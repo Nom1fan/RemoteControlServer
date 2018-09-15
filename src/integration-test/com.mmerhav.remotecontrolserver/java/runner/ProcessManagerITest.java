@@ -1,7 +1,9 @@
 package runner;
 
+import com.mmerhav.remotecontrolserver.RemoteControlServerApplication;
 import com.mmerhav.remotecontrolserver.runner.ProcessManager;
 import com.mmerhav.remotecontrolserver.runner.RunProcessResult;
+import com.mmerhav.remotecontrolserver.runner.StopProcessResult;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,7 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest(classes = RemoteControlServerApplication.class)
 public class ProcessManagerITest {
 
     @Autowired
@@ -19,6 +21,12 @@ public class ProcessManagerITest {
     @Test
     public void runNotepadExecutable_Success() {
         RunProcessResult result = processManager.runProcess("C:/WINDOWS/system32/notepad.exe");
+        Assert.assertTrue(result.isSuccess());
+    }
+
+    @Test
+    public void stopNotePadExecutable_Success() {
+        StopProcessResult result = processManager.stopProcess("notepad");
         Assert.assertTrue(result.isSuccess());
     }
 
