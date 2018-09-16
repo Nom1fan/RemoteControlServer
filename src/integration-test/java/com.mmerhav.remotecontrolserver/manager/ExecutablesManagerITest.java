@@ -1,22 +1,21 @@
-package manager;
+package com.mmerhav.remotecontrolserver.manager;
 
-import com.mmerhav.remotecontrolserver.manager.ExecutablesManagerImpl;
-import org.junit.BeforeClass;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
-import java.io.IOException;
-
-import static org.junit.Assert.*;
-
+@RunWith(SpringRunner.class)
+@SpringBootTest
 public class ExecutablesManagerITest {
 
-    private static ExecutablesManagerImpl executablesManager;
-
-    @BeforeClass
-    public static void beforeClass() throws IOException {
-        executablesManager = new ExecutablesManagerImpl();
-        executablesManager.init();
-    }
+    @Autowired
+    private ExecutablesManagerImpl executablesManager;
 
     @Test
     public void getTeamViewerPathByCommand_Success() {

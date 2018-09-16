@@ -1,9 +1,5 @@
-package runner;
+package com.mmerhav.remotecontrolserver.runner;
 
-import com.mmerhav.remotecontrolserver.RemoteControlServerApplication;
-import com.mmerhav.remotecontrolserver.runner.ProcessManager;
-import com.mmerhav.remotecontrolserver.runner.RunProcessResult;
-import com.mmerhav.remotecontrolserver.runner.StopProcessResult;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,7 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = RemoteControlServerApplication.class)
+@SpringBootTest
 public class ProcessManagerITest {
 
     @Autowired
