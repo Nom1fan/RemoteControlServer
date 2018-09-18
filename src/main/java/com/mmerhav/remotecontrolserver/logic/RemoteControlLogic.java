@@ -5,7 +5,7 @@ import java.io.IOException;
 
 public interface RemoteControlLogic {
 
-    void startProcess(String execName, HttpServletResponse response) throws IOException;
+    String startProcess(String execName, HttpServletResponse response) throws IOException;
 
-    void stopProcess(String execName, HttpServletResponse response) throws IOException;
+    String stopProcess(String execName, HttpServletResponse response) throws IOException;
 }

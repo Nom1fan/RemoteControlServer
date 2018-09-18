@@ -25,9 +25,9 @@ public class RemoteControlLogicImpl implements RemoteControlLogic {
     private ExecutablesManager executablesManager;
 
     @Override
-    public void startProcess(String execName, HttpServletResponse response) throws IOException {
+    public String startProcess(String execName, HttpServletResponse response) throws IOException {
         if (isInvalidExecName(execName, response)) {
-            return;
+            return "";
         }
 
         String executableAbsolutePath = executablesManager.getExecutableAbsolutePath(execName);
@@ -35,12 +35,14 @@ public class RemoteControlLogicImpl implements RemoteControlLogic {
         if (!result.isSuccess()) {
             response.sendError(SC_INTERNAL_SERVER_ERROR, result.getErrMsg());
         }
+
+        return String.format("Process [%s] has been successfully started", execName);
     }
 
     @Override
-    public void stopProcess(String execName, HttpServletResponse response) throws IOException {
+    public String stopProcess(String execName, HttpServletResponse response) throws IOException {
         if (isInvalidExecName(execName, response)) {
-            return;
+            return "";
         }
 
         StopProcessResult result = processManager.stopProcess(execName);
@@ -48,6 +50,8 @@ public class RemoteControlLogicImpl implements RemoteControlLogic {
         if (!result.isSuccess()) {
             response.sendError(SC_INTERNAL_SERVER_ERROR, result.getErrMsg());
         }
+
+        return String.format("Process [%s] has been successfully stopped", execName);
     }
 
     private boolean isInvalidExecName(String execName, HttpServletResponse response) throws IOException {
