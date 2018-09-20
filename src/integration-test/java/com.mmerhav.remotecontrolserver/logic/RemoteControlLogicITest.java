@@ -6,6 +6,8 @@ import static org.mockito.Mockito.verify;
 
 import java.io.IOException;
 import javax.servlet.http.HttpServletResponse;
+
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -37,6 +39,13 @@ public class RemoteControlLogicITest {
         remoteControlLogic.stopProcess(processName, response);
 
         verify(response, times(0)).sendError(anyInt());
+    }
+
+    @Test
+    public void stopNonRunningProcess_noop() throws IOException {
+        String processName = "UTORRENT";
+        String response = remoteControlLogic.stopProcess(processName, this.response);
+        Assert.assertEquals("ERROR: The process \"UTORRENT*\" not found.", response);
     }
 
 }

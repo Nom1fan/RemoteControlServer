@@ -48,7 +48,7 @@ public class RemoteControlLogicImpl implements RemoteControlLogic {
         StopProcessResult result = processManager.stopProcess(execName);
 
         if (!result.isSuccess()) {
-            response.sendError(SC_INTERNAL_SERVER_ERROR, result.getErrMsg());
+            return result.getErrMsg();
         }
 
         return String.format("Process [%s] has been successfully stopped", execName);
