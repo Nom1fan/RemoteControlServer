@@ -1,4 +1,4 @@
-package com.mmerhav.remotecontrolserver.manager;
+package com.mmerhav.remotecontrolserver.process;
 
 import org.junit.Assert;
 import org.junit.Test;

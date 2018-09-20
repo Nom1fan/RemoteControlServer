@@ -1,9 +1,9 @@
 package com.mmerhav.remotecontrolserver.logic;
 
 import com.mmerhav.remotecontrolserver.exec.ExecutablesManager;
-import com.mmerhav.remotecontrolserver.manager.ProcessManager;
-import com.mmerhav.remotecontrolserver.manager.RunProcessResult;
-import com.mmerhav.remotecontrolserver.manager.StopProcessResult;
+import com.mmerhav.remotecontrolserver.process.ProcessManager;
+import com.mmerhav.remotecontrolserver.process.RunProcessResult;
+import com.mmerhav.remotecontrolserver.process.StopProcessResult;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

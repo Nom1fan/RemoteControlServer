@@ -1,4 +1,4 @@
-package com.mmerhav.remotecontrolserver.manager;
+package com.mmerhav.remotecontrolserver.process;
 
 public interface ProcessManager {
 
