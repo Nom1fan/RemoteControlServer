@@ -1,8 +1,8 @@
 package com.mmerhav.remotecontrolserver.logic;
 
-import com.mmerhav.remotecontrolserver.manager.ExecutablesManager;
-import com.mmerhav.remotecontrolserver.runner.ProcessManager;
-import com.mmerhav.remotecontrolserver.runner.RunProcessResult;
+import com.mmerhav.remotecontrolserver.exec.ExecutablesManager;
+import com.mmerhav.remotecontrolserver.process.ProcessManager;
+import com.mmerhav.remotecontrolserver.process.RunProcessResult;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;

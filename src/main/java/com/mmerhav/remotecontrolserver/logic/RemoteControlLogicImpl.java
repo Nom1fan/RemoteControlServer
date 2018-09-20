@@ -1,9 +1,9 @@
 package com.mmerhav.remotecontrolserver.logic;
 
-import com.mmerhav.remotecontrolserver.manager.ExecutablesManager;
-import com.mmerhav.remotecontrolserver.runner.ProcessManager;
-import com.mmerhav.remotecontrolserver.runner.RunProcessResult;
-import com.mmerhav.remotecontrolserver.runner.StopProcessResult;
+import com.mmerhav.remotecontrolserver.exec.ExecutablesManager;
+import com.mmerhav.remotecontrolserver.process.ProcessManager;
+import com.mmerhav.remotecontrolserver.process.RunProcessResult;
+import com.mmerhav.remotecontrolserver.process.StopProcessResult;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -48,7 +48,7 @@ public class RemoteControlLogicImpl implements RemoteControlLogic {
         StopProcessResult result = processManager.stopProcess(execName);
 
         if (!result.isSuccess()) {
-            response.sendError(SC_INTERNAL_SERVER_ERROR, result.getErrMsg());
+            return result.getErrMsg();
         }
 
         return String.format("Process [%s] has been successfully stopped", execName);
