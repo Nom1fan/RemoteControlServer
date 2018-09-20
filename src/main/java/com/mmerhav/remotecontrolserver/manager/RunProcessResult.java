@@ -1,4 +1,4 @@
-package com.mmerhav.remotecontrolserver.runner;
+package com.mmerhav.remotecontrolserver.manager;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
