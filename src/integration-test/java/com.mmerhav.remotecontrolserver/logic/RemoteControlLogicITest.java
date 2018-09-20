@@ -25,7 +25,7 @@ public class RemoteControlLogicITest {
     private RemoteControlLogicImpl remoteControlLogic;
 
     @Mock
-    private HttpServletResponse response;
+    private HttpServletResponse httpServletResponse;
 
     @Before
     public void before() {
@@ -35,17 +35,17 @@ public class RemoteControlLogicITest {
     @Test
     public void startAndStopProcess_success() throws IOException {
         String processName = "TeamViewer";
-        remoteControlLogic.startProcess(processName, response);
-        remoteControlLogic.stopProcess(processName, response);
+        remoteControlLogic.startProcess(processName, httpServletResponse);
+        remoteControlLogic.stopProcess(processName, httpServletResponse);
 
-        verify(response, times(0)).sendError(anyInt());
+        verify(httpServletResponse, times(0)).sendError(anyInt());
     }
 
     @Test
     public void stopNonRunningProcess_noop() throws IOException {
         String processName = "UTORRENT";
-        String response = remoteControlLogic.stopProcess(processName, this.response);
-        Assert.assertEquals("ERROR: The process \"UTORRENT*\" not found.", response);
+        String logicResponse = remoteControlLogic.stopProcess(processName, httpServletResponse);
+        Assert.assertEquals("ERROR: The process \"UTORRENT*\" not found.", logicResponse);
     }
 
 }
