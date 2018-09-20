@@ -1,4 +1,4 @@
-package com.mmerhav.remotecontrolserver.manager;
+package com.mmerhav.remotecontrolserver.exec;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;

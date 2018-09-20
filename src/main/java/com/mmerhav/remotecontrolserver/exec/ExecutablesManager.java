@@ -1,6 +1,4 @@
-package com.mmerhav.remotecontrolserver.manager;
-
-import java.util.Set;
+package com.mmerhav.remotecontrolserver.exec;
 
 public interface ExecutablesManager {
 
