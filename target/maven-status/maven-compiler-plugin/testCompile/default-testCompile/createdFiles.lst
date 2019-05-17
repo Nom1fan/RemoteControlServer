@@ -1,0 +1,5 @@
+com\mmerhav\remotecontrolserver\exec\ExecutablesManagerITest.class
+com\mmerhav\remotecontrolserver\logic\RemoteControlLogicITest.class
+com\mmerhav\remotecontrolserver\process\ProcessManagerITest.class
+com\mmerhav\remotecontrolserver\logic\RemoteControlLogicTest.class
+com\mmerhav\remotecontrolserver\RemoteControlServerApplicationTests.class
