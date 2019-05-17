@@ -1,0 +1,12 @@
+com\mmerhav\remotecontrolserver\logic\RemoteControlLogicImpl.class
+com\mmerhav\remotecontrolserver\process\ProcessManager.class
+com\mmerhav\remotecontrolserver\exec\ExecutablesManagerImpl.class
+com\mmerhav\remotecontrolserver\logic\RemoteControlLogic.class
+META-INF\spring-configuration-metadata.json
+com\mmerhav\remotecontrolserver\exec\ExecutablesManager.class
+com\mmerhav\remotecontrolserver\controller\RemoteControlController.class
+com\mmerhav\remotecontrolserver\exec\Command.class
+com\mmerhav\remotecontrolserver\process\StopProcessResult.class
+com\mmerhav\remotecontrolserver\process\RunProcessResult.class
+com\mmerhav\remotecontrolserver\RemoteControlServerApplication.class
+com\mmerhav\remotecontrolserver\process\ProcessManagerImpl.class
