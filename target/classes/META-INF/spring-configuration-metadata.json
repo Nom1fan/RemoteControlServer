@@ -1,0 +1,17 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "com.mmerhav.remotecontrolserver.exec.ExecutablesManagerImpl",
+      "name": "",
+      "type": "com.mmerhav.remotecontrolserver.exec.ExecutablesManagerImpl"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "com.mmerhav.remotecontrolserver.exec.ExecutablesManagerImpl",
+      "name": "executables",
+      "type": "java.util.Map<java.lang.String,java.lang.String>"
+    }
+  ]
+}

@@ -12,16 +12,21 @@ public class ProcessManagerImpl implements ProcessManager {
 
     @Override
     public RunProcessResult runProcess(String executableAbsolutePath) {
+//        File file = new File(executableAbsolutePath);
+//
+//        if (!file.exists()) {
+//            return new RunProcessResult(false, String.format("File [%s] doesn't exist", executableAbsolutePath));
+//        }
         File file = new File(executableAbsolutePath);
 
-        if (!file.exists()) {
-            return new RunProcessResult(false, String.format("File [%s] doesn't exist", executableAbsolutePath));
+        File dir = null;
+        if (file.exists()) {
+            String dirPath = file.getParent();
+            dir = new File(dirPath);
         }
 
-        String dir = file.getParent();
-
         try {
-            Runtime.getRuntime().exec(executableAbsolutePath, null, new File(dir));
+            Runtime.getRuntime().exec(executableAbsolutePath, null, dir);
             return new RunProcessResult(true);
         } catch (IOException e) {
             e.printStackTrace();
