@@ -16,6 +16,5 @@ This server exposes RESTful APIs that allow to run/terminate predefined local ma
    
 1. Use the REST api to run/terminate the process:
     
-    `/v1/startProcess?name=TeamViewer`
-    
-    `/v1/terminateProcess?name=TeamViewer`   
+    `/v1/runProcess/uTorrent`
+    `/v1/stopProcess/uTorrent`
