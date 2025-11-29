@@ -1,23 +1,21 @@
 package com.mmerhav.remotecontrolserver.logic;
 
-import static org.mockito.Mockito.anyInt;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-
-import java.io.IOException;
-import javax.servlet.http.HttpServletResponse;
-
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import jakarta.servlet.http.HttpServletResponse;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-@RunWith(SpringRunner.class)
+import java.io.IOException;
+
+import static org.mockito.Mockito.*;
+
+@ExtendWith(SpringExtension.class)
+@ExtendWith(MockitoExtension.class)
 @SpringBootTest
 public class RemoteControlLogicITest {
 
@@ -26,11 +24,6 @@ public class RemoteControlLogicITest {
 
     @Mock
     private HttpServletResponse httpServletResponse;
-
-    @Before
-    public void before() {
-        MockitoAnnotations.initMocks(this);
-    }
 
     @Test
     public void startAndStopProcess_success() throws IOException {
@@ -45,7 +38,7 @@ public class RemoteControlLogicITest {
     public void stopNonRunningProcess_noop() throws IOException {
         String processName = "UTORRENT";
         String logicResponse = remoteControlLogic.stopProcess(processName, httpServletResponse);
-        Assert.assertEquals("ERROR: The process \"UTORRENT*\" not found.", logicResponse);
+        Assertions.assertEquals("ERROR: The process \"UTORRENT*\" not found.", logicResponse);
     }
 
 }

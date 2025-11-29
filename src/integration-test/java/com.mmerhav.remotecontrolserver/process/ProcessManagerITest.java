@@ -1,13 +1,13 @@
 package com.mmerhav.remotecontrolserver.process;
 
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest
 public class ProcessManagerITest {
 
@@ -17,20 +17,20 @@ public class ProcessManagerITest {
     @Test
     public void runNotepadExecutable_Success() {
         RunProcessResult result = processManager.runProcess("C:/WINDOWS/system32/notepad.exe");
-        Assert.assertTrue(result.isSuccess());
+        Assertions.assertTrue(result.isSuccess());
     }
 
     @Test
     public void stopNotePadExecutable_Success() {
         StopProcessResult result = processManager.stopProcess("notepad");
-        Assert.assertTrue(result.isSuccess());
+        Assertions.assertTrue(result.isSuccess());
     }
 
     @Test
     public void runNonexistentExecutable_Failure() {
         RunProcessResult result = processManager.runProcess("C:/Nonexistent/path/nonexistent.exe");
-        Assert.assertFalse(result.isSuccess());
-        Assert.assertNotNull(result.getErrMsg());
+        Assertions.assertFalse(result.isSuccess());
+        Assertions.assertNotNull(result.getErrMsg());
         System.out.println(result.getErrMsg());
     }
 }

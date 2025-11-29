@@ -14,17 +14,21 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.0.4.RELEASE</version>
+        <version>3.3.5</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
     <properties>
+        <spring.boot.version>3.3.5</spring.boot.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>1.8</java.version>
+        <java.version>21</java.version>
         <skipTests>false</skipTests>
         <skip.unit.tests>${skipTests}</skip.unit.tests>
         <skipITs>true</skipITs>
+        <commons.io.version>2.14.0</commons.io.version>
+        <gson.version>2.8.9</gson.version>
+        <mvn.builder.helper.plugin.version>3.0.0</mvn.builder.helper.plugin.version>
     </properties>
 
     <dependencies>
@@ -35,7 +39,7 @@
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
-            <version>2.6</version>
+            <version>${commons.io.version}</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -50,7 +54,7 @@
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
-            <version>2.8.9</version>
+            <version>${gson.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -71,7 +75,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.19.1</version>
                 <configuration>
                     <skipTests>${skip.unit.tests}</skipTests>
                     <argLine>-Dfile.encoding=UTF-8</argLine>
@@ -86,7 +89,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
-                <version>3.0.0</version>
+                <version>${mvn.builder.helper.plugin.version}</version>
                 <executions>
                     <execution>
                         <id>add-test-source</id>
@@ -119,12 +122,10 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
-                <version>2.19.1</version>
                 <configuration>
                     <includes>
                         <include>**/*ITest*.java</include>
                     </includes>
-                    <forkMode>once</forkMode>
                     <argLine>-Xmx2048m -Xms1024m -Djava.awt.headless=true -Dfile.encoding=UTF-8</argLine>
                 </configuration>
                 <executions>
