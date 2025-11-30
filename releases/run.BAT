@@ -1,1 +1,1 @@
-java -jar c:/git/remote-control-server/releases/remote-control-server-2.0.0.jar
+java -jar c:/git/remote-control-server/releases/remote-control-server-2.1.0.jar
