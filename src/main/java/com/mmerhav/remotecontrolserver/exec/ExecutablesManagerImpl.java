@@ -7,12 +7,12 @@ import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
+@Getter
+@Setter
 @Component
 @ConfigurationProperties
 public class ExecutablesManagerImpl implements ExecutablesManager {
 
-    @Getter
-    @Setter
     private Map<String,String> executables = new HashMap<>();
 
     @Override
@@ -24,6 +24,4 @@ public class ExecutablesManagerImpl implements ExecutablesManager {
     public boolean isValidExecutable(String execName) {
         return executables.containsKey(execName.toUpperCase());
     }
-
-
 }

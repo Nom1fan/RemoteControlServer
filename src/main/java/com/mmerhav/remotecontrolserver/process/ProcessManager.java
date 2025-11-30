@@ -1,10 +1,12 @@
 package com.mmerhav.remotecontrolserver.process;
 
+import java.io.IOException;
+
 public interface ProcessManager {
 
-    RunProcessResult runProcess(String executableAbsolutePath);
+    Result runProcess(String executableName) throws IOException;
 
-    StopProcessResult stopProcess(String executableName);
+    Result stopProcess(String executableName);
 
 
 }

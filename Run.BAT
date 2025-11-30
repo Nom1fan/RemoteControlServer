@@ -1,2 +1,2 @@
-java -jar C:/git/remote-control-server/target/remote-control-server-0.0.1-SNAPSHOT.jar
+java -jar C:\Users\Mor\git\RemoteControlServer\target\remote-control-server-2.0.0-exec.jar
 pause

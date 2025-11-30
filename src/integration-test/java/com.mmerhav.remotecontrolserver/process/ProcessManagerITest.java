@@ -7,6 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.io.IOException;
+
+import static jakarta.servlet.http.HttpServletResponse.SC_BAD_REQUEST;
+import static jakarta.servlet.http.HttpServletResponse.SC_OK;
+
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 public class ProcessManagerITest {
@@ -15,22 +20,26 @@ public class ProcessManagerITest {
     private ProcessManager processManager;
 
     @Test
-    public void runNotepadExecutable_Success() {
-        RunProcessResult result = processManager.runProcess("C:/WINDOWS/system32/notepad.exe");
-        Assertions.assertTrue(result.isSuccess());
+    public void runNotepadExecutable_Success() throws IOException {
+        startNotepad();
+    }
+
+    private void startNotepad() throws IOException {
+        Result result = processManager.runProcess("NOTEPAD");
+        Assertions.assertEquals(SC_OK, result.statusCode());
     }
 
     @Test
-    public void stopNotePadExecutable_Success() {
-        StopProcessResult result = processManager.stopProcess("notepad");
-        Assertions.assertTrue(result.isSuccess());
+    public void stopNotePadExecutable_Success() throws IOException {
+        startNotepad();
+        Result result = processManager.stopProcess("NOTEPAD");
+        Assertions.assertEquals(SC_OK, result.statusCode());
     }
 
     @Test
-    public void runNonexistentExecutable_Failure() {
-        RunProcessResult result = processManager.runProcess("C:/Nonexistent/path/nonexistent.exe");
-        Assertions.assertFalse(result.isSuccess());
-        Assertions.assertNotNull(result.getErrMsg());
-        System.out.println(result.getErrMsg());
+    public void runNonexistentExecutable_Failure() throws IOException {
+        Result result = processManager.runProcess("NonExistent");
+        Assertions.assertEquals(SC_BAD_REQUEST, result.statusCode());
+        Assertions.assertNotNull(result.msg());
     }
 }
